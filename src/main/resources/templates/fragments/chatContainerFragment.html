@@ -1,10 +1,10 @@
 
-    <div th:fragment="chatContainer(${comments})">
-<!--        <span th:text="${comments}"></span>-->
-        <div th:each="comment:${comments}">
-            <span th:inline="text">
-                <b th:text="${comment.getUserName() + ':'} "></b>
-                <span th:text="${comment.getComment()}"></span>
-            </span>
-        </div>
+<!--Thymeleaf fragment to be returned populated with all comments-->
+<div th:fragment="chatContainer(${comments})">
+    <div th:each="comment:${comments}">
+        <span th:inline="text">
+            <b th:text="${comment.getUserName() + ':'} "></b>
+            <span th:text="${comment.getComment()}"></span>
+        </span>
     </div>
+</div>

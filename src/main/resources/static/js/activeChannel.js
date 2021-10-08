@@ -1,7 +1,11 @@
+// Select input field
 let chatInputField = document.getElementById("textInput");
+// Get channel ID from the input fields DATA attribute
 let activeChannelId = chatInputField.getAttribute("data-channelId");
+// Get username from the session storage
 let userName = window.JSON.parse(sessionStorage.getItem("user"))["name"];
 
+// add event listener on input field, it uploads the comment when the field goes inactive
 chatInputField.addEventListener('blur',()=>{
     let reqBody = {
         userInput:chatInputField.value,
@@ -18,26 +22,17 @@ chatInputField.addEventListener('blur',()=>{
         body:JSON.stringify(reqBody)
     };
     fetch("/channels",fetchOption)
-        // .then(()=>window.location.href = "/channels/" + activeChannelId)
+        .then(() => document.getElementById("textInput").value = "");
 })
-
+// Auto refresh all comments
 setInterval((activeChannelId)=> {
 
+    // fetch all comments
     fetch("/channels/" + activeChannelId + "/history")
 
         .then(async (response)=>{
-            // $.get("event-count").done(function(fragment) { // get from controller
-            //     $("#eventCount").replaceWith(fragment); // update snippet of page
-            // });
-            // console.log()
-            document.getElementById("chatContainer").innerHTML=await response.text();
-            // // chatContainer.innerHTML = '';
-            // const parser = new DOMParser();
-            // const doc = parser.parseFromString(await response.text(), 'text/html');
-            // $('#chatContainer').replaceWith(doc.body);
-
-            // console.log(doc)
-            // chatContainer.appendChild( doc.body);
+            // insert the returned fragment
+            document.getElementById("chatContainer").innerHTML = await response.text();
         })
-    // window.location.href = "/channels/" + activeChannelId;
+
 },500,activeChannelId)

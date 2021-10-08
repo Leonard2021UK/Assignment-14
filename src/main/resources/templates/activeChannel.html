@@ -5,31 +5,9 @@
     <title th:text="${activeChannel.getChannelName()}"></title>
 </head>
 <body>
-<div id="chatContainer">
-<!--    <div th:each="comment:${activeChannel.getComments()}">-->
-<!--        <span th:inline="text"><b th:text="${comment.getUserName() + ':'} "></b><span th:text="${comment.getComment()}"></span></span>-->
-<!--    </div>-->
-<!--    <div th:fragment="chatContainer(${comments})">-->
-<!--        &lt;!&ndash;        <span th:text="${comments}"></span>&ndash;&gt;-->
-<!--        <div th:each="comment:${comments}">-->
-<!--            <span th:inline="text">-->
-
-<!--                <b th:text="${comment.getUserName() + ':'} "></b>-->
-<!--                <span th:text="${comment.getComment()}"></span>-->
-<!--            </span>-->
-<!--        </div>-->
-<!--    </div>-->
-
-</div>
-<!--<div th:insert="fragments/chatContainerFragment :: chatContainer(${comments})"></div>-->
-<!--<div th:insert="fragments/chatContainerFragment :: chatContainer(${comments})"></div>-->
-
+<div id="chatContainer" style="border: black solid"></div>
+<label for="textInput">Type your message:</label><br>
 <textarea id="textInput" th:data-channelId="${activeChannel.getChannelId()}"></textarea>
-
-<script th:inline="javascript" src="/js/activeChannel.js">
-
-</script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossOrigin="anonymous"></script>
+<script th:inline="javascript" src="/js/activeChannel.js"></script>
 </body>
 </html>

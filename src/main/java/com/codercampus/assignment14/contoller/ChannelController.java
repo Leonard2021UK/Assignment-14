@@ -2,7 +2,6 @@ package com.codercampus.assignment14.contoller;
 
 import com.codercampus.assignment14.domain.Channel;
 import com.codercampus.assignment14.domain.Comment;
-import com.codercampus.assignment14.domain.User;
 import com.codercampus.assignment14.repository.ChannelRepository;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonParser;
@@ -42,7 +41,6 @@ public class ChannelController {
     @GetMapping("/channels/{channelId}/history")
     public String getChannelComments(@PathVariable Long channelId, ModelMap model){
         List<Comment> comments = this.channelRepository.getChannelComments(channelId);
-//        comments.add(new Comment("leoo","leo is le"));
         model.addAttribute("comments",comments);
         return "/fragments/chatContainerFragment::chatContainer";
     }
@@ -57,10 +55,7 @@ public class ChannelController {
         Long channelId = requestBodyNode.get("activeChannelId").asLong();
 
         this.channelRepository.saveComment(newComment,channelId);
-//        Channel activeChannel = this.channelRepository.getChannelById(channelId);
-//        model.put("activeChannel",activeChannel);
-//        return "redirect:/channels/"+channelId;
-//        return "activeChannel";
+
         return "redirect:/channels/" + channelId + "/history";
 
     }

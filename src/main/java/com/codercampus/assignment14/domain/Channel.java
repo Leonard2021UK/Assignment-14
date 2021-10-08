@@ -14,7 +14,6 @@ public class Channel {
 
     private List<Comment> comments = new ArrayList<>();
 
-
     public Long getChannelId() {
         return channelId;
     }
