@@ -18,7 +18,7 @@ chatInputField.addEventListener('blur',()=>{
         body:JSON.stringify(reqBody)
     };
     fetch("/channels",fetchOption)
-        .then(()=>window.location.href = "/channels/" + activeChannelId)
+        // .then(()=>window.location.href = "/channels/" + activeChannelId)
 })
 
 setInterval((activeChannelId)=> {
@@ -26,13 +26,16 @@ setInterval((activeChannelId)=> {
     fetch("/channels/" + activeChannelId + "/history")
 
         .then(async (response)=>{
-            $('#chatContainer').html(await response.text());
-
+            // $.get("event-count").done(function(fragment) { // get from controller
+            //     $("#eventCount").replaceWith(fragment); // update snippet of page
+            // });
             // console.log()
-            // let chatContainer = document.getElementById("chatContainer");
+            document.getElementById("chatContainer").innerHTML=await response.text();
             // // chatContainer.innerHTML = '';
             // const parser = new DOMParser();
             // const doc = parser.parseFromString(await response.text(), 'text/html');
+            // $('#chatContainer').replaceWith(doc.body);
+
             // console.log(doc)
             // chatContainer.appendChild( doc.body);
         })

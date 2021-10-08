@@ -59,8 +59,10 @@ public class ChannelController {
         this.channelRepository.saveComment(newComment,channelId);
 //        Channel activeChannel = this.channelRepository.getChannelById(channelId);
 //        model.put("activeChannel",activeChannel);
-        return "redirect:/channels/"+channelId;
+//        return "redirect:/channels/"+channelId;
 //        return "activeChannel";
+        return "redirect:/channels/" + channelId + "/history";
+
     }
 
     private JsonNode stringToObject(String value) throws IOException {
