@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Channels</title>
+</head>
+<body>
+<h1>Choose a channel</h1>
+<div th:if="${#lists.size(channels) > 0}">
+    <div th:each="channel : ${channels}">
+        <span th:inline="text">
+            <a th:href="@{/channels/{chanelId}(chanelId=${channel.getKey()})}">[[${channel.getValue().getChannelName()}]]</a>
+        </span>
+    </div>
+    <br/>
+</div>
+
+</body>
+</html>
